@@ -1,12 +1,51 @@
-# React + Vite
+# NxtStride Goals
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern performance management web application based on Motivation 3.0 principles of autonomy, mastery, and purpose.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+NxtStride Goals provides a lightweight, employee-centric approach to performance reviews. The system replaces traditional annual evaluations with regular feedback cycles focused on intrinsic motivation factors.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Self Reviews: Team members assess their own performance along autonomy, mastery, and purpose dimensions
+Peer Feedback: Colleagues provide targeted, constructive insights
+Manager Reviews: Leaders provide guidance and development support
+Analytics Dashboard: Track performance patterns across teams
+Review Cycles: Flexible quarterly and annual review cycles
+
+## Technology Stack
+
+React with Vite
+Material UI for interface components
+Firebase (Authentication, Firestore, Hosting)
+Recharts for data visualization
+
+## Getting Started
+
+Clone the repository
+Install dependencies: npm install
+Configure Firebase:
+
+Create a Firebase project
+Enable Authentication with Google
+Set up Firestore database
+Update firebase.js with your project credentials
+
+
+Run the development server: npm run dev
+
+## Deployment
+
+Deploy to Firebase Hosting:
+Copynpm run build
+firebase deploy --only hosting
+
+##User Roles
+
+Team Members: Complete self-assessments, provide peer feedback
+Managers: Review team performance, access analytics, manage review cycles
+
+## License
+
+This project is licensed under the MIT License.
