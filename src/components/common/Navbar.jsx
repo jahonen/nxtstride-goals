@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import '../../styles/navbar.css';
 import {
   AppBar,
   Box,
@@ -19,6 +20,8 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import PeopleIcon from '@mui/icons-material/People';
+import InsightsIcon from '@mui/icons-material/Insights';
 
 export default function Navbar() {
   const { currentUser, userRole, logout } = useAuth();
@@ -53,7 +56,7 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="navbar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Logo/Title - Desktop */}
@@ -65,10 +68,8 @@ export default function Navbar() {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontWeight: 700,
-              color: 'inherit',
-              textDecoration: 'none',
             }}
+            className="navbar-logo"
           >
             NxtStride Goals
           </Typography>
@@ -82,6 +83,7 @@ export default function Navbar() {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              className="navbar-menu-button"
             >
               <MenuIcon />
             </IconButton>
@@ -99,15 +101,14 @@ export default function Navbar() {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
+              className="mobile-menu"
             >
               <MenuItem 
                 onClick={() => {
                   handleCloseNavMenu();
                   navigate('/dashboard');
                 }}
+                className="navbar-menu-item"
               >
                 <Typography textAlign="center">Dashboard</Typography>
               </MenuItem>
@@ -116,8 +117,33 @@ export default function Navbar() {
                 <MenuItem 
                   onClick={() => {
                     handleCloseNavMenu();
+                    navigate('/team');
+                  }}
+                  className="navbar-menu-item"
+                >
+                  <Typography textAlign="center">Team</Typography>
+                </MenuItem>
+              )}
+              
+              {(userRole === 'manager' || userRole === 'admin') && (
+                <MenuItem 
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate('/analytics');
+                  }}
+                  className="navbar-menu-item"
+                >
+                  <Typography textAlign="center">Analytics</Typography>
+                </MenuItem>
+              )}
+              
+              {(userRole === 'manager' || userRole === 'admin') && (
+                <MenuItem 
+                  onClick={() => {
+                    handleCloseNavMenu();
                     navigate('/admin');
                   }}
+                  className="navbar-menu-item"
                 >
                   <Typography textAlign="center">Admin</Typography>
                 </MenuItem>
@@ -135,10 +161,8 @@ export default function Navbar() {
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontWeight: 700,
-              color: 'inherit',
-              textDecoration: 'none',
             }}
+            className="navbar-logo"
           >
             NxtStride Goals
           </Typography>
@@ -148,16 +172,36 @@ export default function Navbar() {
             <Button
               startIcon={<DashboardIcon />}
               onClick={() => navigate('/dashboard')}
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              className="desktop-menu-button"
             >
               Dashboard
             </Button>
             
             {(userRole === 'manager' || userRole === 'admin') && (
               <Button
+                startIcon={<PeopleIcon />}
+                onClick={() => navigate('/team')}
+                className="desktop-menu-button"
+              >
+                Team
+              </Button>
+            )}
+            
+            {(userRole === 'manager' || userRole === 'admin') && (
+              <Button
+                startIcon={<InsightsIcon />}
+                onClick={() => navigate('/analytics')}
+                className="desktop-menu-button"
+              >
+                Analytics
+              </Button>
+            )}
+            
+            {(userRole === 'manager' || userRole === 'admin') && (
+              <Button
                 startIcon={<AdminPanelSettingsIcon />}
                 onClick={() => navigate('/admin')}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                className="desktop-menu-button"
               >
                 Admin
               </Button>
@@ -171,6 +215,7 @@ export default function Navbar() {
                 <Avatar 
                   alt={currentUser?.displayName || ''} 
                   src={currentUser?.photoURL || ''}
+                  className="navbar-user-avatar"
                 />
               </IconButton>
             </Tooltip>

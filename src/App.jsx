@@ -9,6 +9,12 @@ import SelfReview from './components/Reviews/SelfReview';
 import AdminPanel from './components/Admin/AdminPanel';
 import Navbar from './components/common/Navbar';
 import PeerReview from './components/Reviews/PeerReview';
+import ReviewSummary from './components/Reviews/ReviewSummary';
+import ManagerReview from './components/Reviews/ManagerReview';
+import TeamView from './components/Manager/TeamView';
+import AnalyticsDashboard from './components/Manager/AnalyticsDashboard';
+
+import './styles/main.css';
 
 function App() {
   const theme = createTheme({
@@ -26,7 +32,9 @@ function App() {
   const PrivateLayout = ({ children }) => (
     <>
       <Navbar />
-      {children}
+      <div className="main-container">
+        {children}
+      </div>
     </>
   );
 
@@ -77,6 +85,49 @@ function App() {
                 <PrivateRoute>
                   <PrivateLayout>
                     <PeerReview />
+                  </PrivateLayout>
+                </PrivateRoute>
+              } 
+            />
+
+            <Route 
+              path="/summary/:reviewId" 
+              element={
+                <PrivateRoute>
+                  <PrivateLayout>
+                    <ReviewSummary />
+                  </PrivateLayout>
+                </PrivateRoute>
+              } 
+            />
+
+            <Route 
+              path="/manager-review/:reviewId" 
+              element={
+                <PrivateRoute>
+                  <PrivateLayout>
+                    <ManagerReview />
+                  </PrivateLayout>
+                </PrivateRoute>
+              } 
+            />
+            <Route 
+              path="/team" 
+              element={
+                <PrivateRoute>
+                  <PrivateLayout>
+                    <TeamView />
+                  </PrivateLayout>
+                </PrivateRoute>
+              } 
+            />
+
+            <Route 
+              path="/analytics" 
+              element={
+                <PrivateRoute>
+                  <PrivateLayout>
+                    <AnalyticsDashboard />
                   </PrivateLayout>
                 </PrivateRoute>
               } 
