@@ -41,7 +41,7 @@ Deploy to Firebase Hosting:
 Copynpm run build
 firebase deploy --only hosting
 
-##User Roles
+## User Roles
 
 Team Members: Complete self-assessments, provide peer feedback
 Managers: Review team performance, access analytics, manage review cycles
